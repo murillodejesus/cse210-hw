@@ -55,7 +55,7 @@ class Program
         }
         else
         {
-            Console.WriteLine("Sorry, you don't passed, try again in the next term!!");
+            Console.WriteLine("Don't worry, you can do better next time!");
         }
     }
 }
