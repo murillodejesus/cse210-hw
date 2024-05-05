@@ -78,6 +78,21 @@ class Program
             Console.WriteLine("4. Load the journal from a file");
             Console.WriteLine("5. Exit");
 
+            Console.Write("Enter your choice: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    string prompt = prompts[rand.Next(prompts.Length)];
+                    Console.WriteLine($"Prompt: {prompt}");
+                    Console.Write("Enter your response: ");
+                    string response = Console.ReadLine();
+                    string date = DateTime.Now.ToShortDateString();
+                    journal.AddEntry(prompt, response, date);
+                    break;
+            }
+
         }
     }
 }
