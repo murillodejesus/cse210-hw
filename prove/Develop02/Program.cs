@@ -109,7 +109,7 @@ class Program
                 case 3:
                     Console.Write("Enter filename to save: ");
                     string saveFilename = Console.ReadLine();
-                    journal.LoadFromFile(saveFilename);
+                    journal.SaveToFile(saveFilename);
                     Console.WriteLine("Journal saved successfully.");
                     break;
                 case 4:
