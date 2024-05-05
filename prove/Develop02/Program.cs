@@ -115,7 +115,7 @@ class Program
                 case 4:
                     Console.Write("Enter filename to load: ");
                     string loadFilename = Console.ReadLine();
-                    journal.LoadFromFile(loadFilename);
+                    journal.SaveToFile(loadFilename);
                     Console.WriteLine("Journal loaded successfully.");
                     break;
                 case 5:
