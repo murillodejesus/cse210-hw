@@ -27,4 +27,29 @@ class Journal
         };
         entries.Add(entry);
     }
+
+    public void DisplayEntries()
+    { 
+        foreach (var entry in entries)
+        {
+            Console.WriteLine($"Date: {entry.Date}");
+            Console.WriteLine($"Prompt: {entry.Prompt}");
+            Console.WriteLine($"Response: {entry.Response}/n");
+        }
+    }
+
+    public void LoadFromFile(string filename)
+    {
+        entries.Clear();
+        string[] lines = File.ReadAllLines(filename);
+        foreach (var line in lines)
+        {
+            string[] parts = line.Split(',');
+            if (parts.Length == 3)
+            {
+                AddEntry(parts[1], parts[2], parts[0]);
+            }
+        }
+    }
 }
+
