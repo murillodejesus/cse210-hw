@@ -91,8 +91,13 @@ class Program
                     string date = DateTime.Now.ToShortDateString();
                     journal.AddEntry(prompt, response, date);
                     break;
+                case 5:
+                    exit = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Choice. Please enter a number between 1 and 5.");
+                    break;
             }
-
         }
     }
 }
