@@ -38,6 +38,17 @@ class Journal
         }
     }
 
+    public void SaveToFile(string filename)
+    {
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (var entry in entries)
+            {
+                outputFile.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
+            }
+        }
+    }
+
     public void LoadFromFile(string filename)
     {
         entries.Clear();
@@ -90,6 +101,22 @@ class Program
                     string response = Console.ReadLine();
                     string date = DateTime.Now.ToShortDateString();
                     journal.AddEntry(prompt, response, date);
+                    break;
+                case 2:
+                    Console.WriteLine("Journal Entries: ");
+                    journal.DisplayEntries();
+                    break;
+                case 3:
+                    Console.Write("Enter filename to save: ");
+                    string saveFilename = Console.ReadLine();
+                    journal.LoadFromFile(saveFilename);
+                    Console.WriteLine("Journal saved successfully.");
+                    break;
+                case 4:
+                    Console.Write("Enter filename to load: ");
+                    string loadFilename = Console.ReadLine();
+                    journal.LoadFromFile(loadFilename);
+                    Console.WriteLine("Journal loaded successfully.");
                     break;
                 case 5:
                     exit = true;
