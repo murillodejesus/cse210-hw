@@ -18,8 +18,8 @@ class Program
        Console.WriteLine(fraction3.GetFractionString());
        Console.WriteLine(fraction3.GetDecimalValue());
 
-       fraction1.Numerator = 3;
-       fraction1.Denominator = 4;
+       fraction1.Top = 3;
+       fraction1.Bottom = 4;
 
        Console.WriteLine(fraction1.GetFractionString());
        Console.WriteLine(fraction2.GetDecimalValue());

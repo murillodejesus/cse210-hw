@@ -28,7 +28,7 @@ public class Fraction
         set { top = value; }
     }
 
-    public int Denominator
+    public int Bottom
     {
         get { return bottom; }
         set
