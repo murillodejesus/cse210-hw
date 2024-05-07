@@ -5,9 +5,9 @@ class Program
 {
     static void Main (string[] args)
     {
-        Fraction f1 = new Fraction();
-        Console.WriteLine(f1.GetFractionString());
-        Console.WriteLine(f1.GetDecimalValue());
+       Fraction fraction1 = new Fraction();
+       Fraction fraction2 = new Fraction(5);
+       Fraction Fraction3 = new Fraction(6,7);
 
         Fraction f2 = new Fraction(5);
         Console.WriteLine(f2.GetFractionString());
@@ -20,7 +20,7 @@ class Program
         Fraction f4 = new Fraction(1,3);
         Console.WriteLine(f4.GetFractionString());
         Console.WriteLine(f4.GetFractionString());
-        
+
  
     }
 }
