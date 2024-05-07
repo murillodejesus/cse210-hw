@@ -47,7 +47,7 @@ public class Fraction
 
     public double GetDecimalValue();
     {
-        return (double) numerator / denominator;
+        return (double)numerator / denominator;
     }
 
 }
