@@ -1,9 +1,8 @@
-using System
-
+using System;
 public class Fraction
 {
-    private int_top;
-    private int_bottom;
+    private int _top;
+    private int _bottom;
 
     public Fraction()
     {
