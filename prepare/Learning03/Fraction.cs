@@ -1,40 +1,40 @@
 using System;
 public class Fraction
 {
-    private int numerator;
-    private int denominator;
+    private int top;
+    private int bottom;
 
     public Fraction()
     {
-        numerator = 1;
-        denominator = 1;
+        top = 1;
+        bottom = 1;
     }
 
     public Fraction(int wholeNumber)
     {
-        numerator = wholeNumber;
-        denominator = 1;
+        top = wholeNumber;
+        bottom = 1;
     }
 
-    public Fraction (int numerator, int denominator)
+    public Fraction (int top, int bottom)
     {
-        this.numerator = numerator;
-        this.denominator = denominator;
+        this.top = top;
+        this.bottom = bottom;
     }
 
-    public int Numerator
+    public int Top
     {
-        get { return numerator; }
-        get { numerator = value; }
+        get { return top; }
+        set { top = value; }
     }
 
     public int Denominator
     {
-        get { return denominator; }
+        get { return bottom; }
         set
         {
             if (value != 0)
-                denominator = value;
+                bottom = value;
             else 
                 throw new ArgumentException("Denominator cannot be zero.");
         }
@@ -42,12 +42,12 @@ public class Fraction
 
     public string GetFractionString()
     {
-        return $"{numerator}/{denominator}";
+        return $"{top}/{bottom}";
     }
 
-    public double GetDecimalValue();
+    public double GetDecimalValue()
     {
-        return (double)numerator / denominator;
+        return (double)top / bottom;
     }
 
 }
