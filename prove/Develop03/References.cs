@@ -20,4 +20,5 @@ class Reference
         else
             return $"{Book} {Chapter}:{StartVerse}-{EndVerse}";
     }
+
 }

@@ -22,7 +22,7 @@ class Scripture
         for (int i = 0; i < wordsToHide; i++)
         {
             int index = random.Next(_words.Count);
-            _words[index] = new string('_', _words[index].Length);
+            _words[index] = new string('*', _words[index].Length);
         }
     }
 }
