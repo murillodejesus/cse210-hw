@@ -34,8 +34,8 @@ public class ReflectionActivity : MindfulnessActivity
         {
             string question = questions[rand.Next(questions.Count)];
             Console.WriteLine(question);
-            PauseWithSpinner(5);
-            elapsed += 5;
+            PauseWithSpinner(15);
+            elapsed += 15;
         }
     }
 }
