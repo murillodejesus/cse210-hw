@@ -1,9 +1,11 @@
-using System;
-
-class Program
-{
-    static void Main(string[] args)
+namespace EternalQuest
+{ 
+    class Program
     {
-        Console.WriteLine("Hello Develop05 World!");
+        static void Main(string[] args)
+        {
+            GoalManager manager = new GoalManager();
+            manager.Run();
+        }
     }
 }
