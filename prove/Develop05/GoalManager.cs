@@ -82,5 +82,96 @@ namespace EternalQuest
         }
 
         private void AddRecordGoalEvent()
+        {
+            Console.WriteLine("Select a goal to record an event for:");
+            for (int i = 0; i < goals.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {goals[i].GetStatus()}");
+            }
+            int goalIndex = int.Parse(Console.ReadLine()) - 1;
+
+            if (goalIndex >= 0 && goalIndex < goals.Count)
+            {
+                goals[goalIndex].RecordEvent();
+                totalPoints += goals[goalIndex].Points;
+                if (goals[goalIndex] is ChecklistGoal checklistGoal && checklistGoal.Count == checklistGoal.Target)
+                {
+                    totalPoints += checklistGoal.BonusPoints;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid goal selection.");
+            }
+        }
+
+        private void ShowGoals()
+        {
+            Console.WriteLine("\nGoals List:");
+            foreach (Goal goal in goals)
+            {
+                Console.WriteLine(goal.GetStatus());
+            }
+        }
+
+        private void ShowScore()
+        {
+            Console.WriteLine($"\nTotal Score: {totalPoints} points");
+        }
+
+        private void SaveGoals()
+        {
+            using (StreamWriter writer = new StreamWriter("goals.txt"))
+            {
+                writer.WriteLine(totalPoints);
+                foreach (Goal goal in goals)
+                {
+                    writer.WriteLine(goal.GetStringRepresentation());
+                }
+            }
+            Console.WriteLine("Goals and score saved successfully.");
+        }
+
+        private void LoadGoals()
+        {
+            if (File.Exists("goal.txt"))
+            {
+                string[] lines = File.ReadAllLines("goals.txt");
+                totalPoints = int.Parse(lines[0]);
+
+                foreach (string line in lines [1..])
+                {
+                    string[] parts = line.Split(':');
+                    string goalType = parts[0];
+                    string [] details = parts[1].Split(',');
+
+                    switch (goalType)
+                    {
+                        case "SimpleGoal":
+                            SimpleGoal simpleGoal = new SimpleGoal(details[0], int.Parse(details[1]))
+                            {
+                                IsComplete = bool.Parse(details[2])
+                            };
+                            goals.Add(simpleGoal);
+                            break;
+                        case "EternalGoal":
+                            EternalGoal eternalGoal = new EternalGoal(details[0], int.Parse(details[1]))
+                            {
+                                Count = int.Parse(details[2])
+                            };
+                            goals.Add(eternalGoal);
+                            break;
+                        case "ChecklistGoal":
+                            ChecklistGoal checklistGoal = new ChecklistGoal(details[0], int.Parse(details[1]), int.Parse(details[2]), int.Parse(details[4]))
+                            {
+                                Count = int.Parse(details[3])
+                            };
+                            goals.Add(checklistGoal);
+                            break;
+                    }
+                }
+                Console.WriteLine("Goals and score loaded successfully.");
+            }
+        }
     }
 }
