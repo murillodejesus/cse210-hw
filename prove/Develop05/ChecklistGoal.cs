@@ -1,9 +1,10 @@
 namespace EternalQuest
 {
+    // ChecklistGoal class
     public class ChecklistGoal : Goal
     {
         public int Target { get; private set; }
-        public int Count { get; private set; }
+        public int Count { get; set; }
         public int BonusPoints { get; private set; }
 
         public ChecklistGoal(string name, int points, int target, int bonusPoints) : base(name, points)
@@ -29,6 +30,7 @@ namespace EternalQuest
                 Console.WriteLine($"Goal '{Name}' is already completed.");
             }
         }
+
         public override string GetStatus()
         {
             return Count >= Target ? $"[X] {Name} - Completed {Count}/{Target} times" : $"[ ] {Name} - Completed {Count}/{Target} times";

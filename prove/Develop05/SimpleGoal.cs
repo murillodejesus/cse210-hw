@@ -2,7 +2,7 @@ namespace EternalQuest
 {
     public class SimpleGoal : Goal
     {
-        public bool IsComplete { get; private set; }
+        public bool IsComplete { get; set; }
 
         public SimpleGoal(string name, int points) : base(name, points)
         {

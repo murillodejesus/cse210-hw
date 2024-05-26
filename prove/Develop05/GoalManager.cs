@@ -15,7 +15,7 @@ namespace EternalQuest
             bool running = true;
             while (running)
             {
-                Console.WriteLine("/nEternal Quest - Main Menu");
+                Console.WriteLine("\nEternal Quest - Main Menu");
                 Console.WriteLine("1. Add New Goal");
                 Console.WriteLine("2. Record Goal Event");
                 Console.WriteLine("3. Show Goals");
@@ -28,7 +28,7 @@ namespace EternalQuest
                         AddNewGoal();
                         break;
                     case "2":
-                        AddRecordGoalEvent();
+                        RecordGoalEvent();
                         break;
                     case "3":
                         ShowGoals();
@@ -81,7 +81,7 @@ namespace EternalQuest
             }
         }
 
-        private void AddRecordGoalEvent()
+        private void RecordGoalEvent()
         {
             Console.WriteLine("Select a goal to record an event for:");
             for (int i = 0; i < goals.Count; i++)
@@ -92,9 +92,11 @@ namespace EternalQuest
 
             if (goalIndex >= 0 && goalIndex < goals.Count)
             {
-                goals[goalIndex].RecordEvent();
-                totalPoints += goals[goalIndex].Points;
-                if (goals[goalIndex] is ChecklistGoal checklistGoal && checklistGoal.Count == checklistGoal.Target)
+                Goal selectedGoal = goals[goalIndex];
+                selectedGoal.RecordEvent();
+                totalPoints += selectedGoal.Points;
+
+                if (selectedGoal is ChecklistGoal checklistGoal && checklistGoal.Count == checklistGoal.Target)
                 {
                     totalPoints += checklistGoal.BonusPoints;
                 }
@@ -134,38 +136,32 @@ namespace EternalQuest
 
         private void LoadGoals()
         {
-            if (File.Exists("goal.txt"))
+            if (File.Exists("goals.txt"))
             {
                 string[] lines = File.ReadAllLines("goals.txt");
                 totalPoints = int.Parse(lines[0]);
 
-                foreach (string line in lines [1..])
+                foreach (string line in lines[1..])
                 {
                     string[] parts = line.Split(':');
                     string goalType = parts[0];
-                    string [] details = parts[1].Split(',');
+                    string[] details = parts[1].Split(',');
 
                     switch (goalType)
                     {
                         case "SimpleGoal":
-                            SimpleGoal simpleGoal = new SimpleGoal(details[0], int.Parse(details[1]))
-                            {
-                                IsComplete = bool.Parse(details[2])
-                            };
+                            SimpleGoal simpleGoal = new SimpleGoal(details[0], int.Parse(details[1]));
+                            simpleGoal.IsComplete = bool.Parse(details[2]);
                             goals.Add(simpleGoal);
                             break;
                         case "EternalGoal":
-                            EternalGoal eternalGoal = new EternalGoal(details[0], int.Parse(details[1]))
-                            {
-                                Count = int.Parse(details[2])
-                            };
+                            EternalGoal eternalGoal = new EternalGoal(details[0], int.Parse(details[1]));
+                            eternalGoal.Count = int.Parse(details[2]);
                             goals.Add(eternalGoal);
                             break;
                         case "ChecklistGoal":
-                            ChecklistGoal checklistGoal = new ChecklistGoal(details[0], int.Parse(details[1]), int.Parse(details[2]), int.Parse(details[4]))
-                            {
-                                Count = int.Parse(details[3])
-                            };
+                            ChecklistGoal checklistGoal = new ChecklistGoal(details[0], int.Parse(details[1]), int.Parse(details[2]), int.Parse(details[4]));
+                            checklistGoal.Count = int.Parse(details[3]);
                             goals.Add(checklistGoal);
                             break;
                     }
